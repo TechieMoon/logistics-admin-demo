@@ -26,11 +26,15 @@ export async function seedIfEmpty(db: Db) {
   await db.tx(async (t) => {
     for (const [i, r] of demoRows().entries()) {
       const base = `now() - interval '${36 - i} hours'`;
-      const [{ id }] = await t.query<{ id: number }>(
+      const inserted = await t.query<{ id: number }>(
         `insert into shipments (order_no, customer_name, phone, item_name, quantity, tracking_cn, status, created_at, updated_at)
-         values ($1,$2,$3,$4,$5,$6,$7, ${base}, ${base} + interval '${r.stage * 5} minutes') returning id::int as id`,
+         values ($1,$2,$3,$4,$5,$6,$7, ${base}, ${base} + interval '${r.stage * 5} minutes')
+         on conflict (order_no) do nothing returning id::int as id`,
         [r.order_no, r.customer_name, r.phone, r.item_name, r.quantity, r.tracking_cn, STATUSES[r.stage]],
       );
+      // 서버 두 대가 동시에 처음 뜨면 둘 다 빈 DB로 볼 수 있어, 이미 들어간 주문은 건너뜁니다.
+      if (!inserted.length) continue;
+      const { id } = inserted[0];
       for (let s = 0; s <= r.stage; s++) {
         await t.query(
           `insert into status_history (shipment_id, from_status, to_status, changed_by, changed_at)

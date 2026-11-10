@@ -1,4 +1,4 @@
--- 퀵스타 물류 어드민 데모 스키마
+-- 배송대행 어드민 데모 스키마
 -- Supabase SQL Editor에 그대로 붙여 넣거나 `npm run db:setup`으로 실행합니다.
 -- 여러 번 실행해도 안전하도록 if not exists를 사용합니다.
 

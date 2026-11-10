@@ -2,7 +2,7 @@ import type { Db } from "./db";
 import { STATUS_LABEL, type Status } from "./status";
 
 export function buildMessage(orderNo: string, status: Status): string {
-  return `[퀵스타 데모] 주문 ${orderNo}의 배송 상태가 '${STATUS_LABEL[status]}'(으)로 바뀌었습니다.`;
+  return `[배송 알림 데모] 주문 ${orderNo}의 배송 상태가 '${STATUS_LABEL[status]}'(으)로 바뀌었습니다.`;
 }
 
 type Fetcher = (url: string, init: RequestInit) => Promise<Response>;

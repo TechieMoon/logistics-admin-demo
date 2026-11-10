@@ -9,7 +9,7 @@ export function demoRows() {
   return Array.from({ length: 36 }, (_, i) => {
     const n = i + 1;
     return {
-      order_no: `QS2611-${String(n).padStart(4, "0")}`,
+      order_no: `SH2611-${String(n).padStart(4, "0")}`,
       customer_name: NAMES[i % NAMES.length],
       phone: `010${String(20000000 + n * 7919).slice(0, 8)}`,
       item_name: ITEMS[(i * 3) % ITEMS.length],

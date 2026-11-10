@@ -9,7 +9,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <>
       <header className="topbar">
         <div className="in">
-          <Link className="brand" href="/">퀵스타 어드민 데모</Link>
+          <Link className="brand" href="/">배송대행 어드민 데모</Link>
           {name && (
             <>
               <Link href="/admin">주문 목록</Link>

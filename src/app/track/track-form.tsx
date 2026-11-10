@@ -20,7 +20,7 @@ export function TrackForm() {
     <>
       <form action={action} className="card" key={state ? `${state.orderNo}|${state.last4}|${state.kind}` : "init"}>
         <label htmlFor="order_no" style={{ marginTop: 0 }}>주문번호</label>
-        <input id="order_no" name="order_no" type="text" placeholder="예: QS2611-0012" style={{ width: "100%" }} defaultValue={state?.orderNo} />
+        <input id="order_no" name="order_no" type="text" placeholder="예: SH2611-0012" style={{ width: "100%" }} defaultValue={state?.orderNo} />
         <label htmlFor="last4">전화번호 뒷자리 4자리</label>
         <input id="last4" name="last4" type="text" inputMode="numeric" maxLength={4} placeholder="1234" style={{ width: "100%" }} defaultValue={state?.last4} />
         <button className="btn" style={{ marginTop: 16, width: "100%" }} disabled={pending}>

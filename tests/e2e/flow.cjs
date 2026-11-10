@@ -23,9 +23,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const c = await p.locator('tbody tr').count();
   assert(c === 6, '통관 중 필터 6건: ' + c);
   // 상세 → 다음 단계
-  await p.goto(B + '/admin?q=QS2611-0008');
-  await p.click('a:has-text("QS2611-0008")');
-  await p.waitForSelector('h1:has-text("QS2611-0008")');
+  await p.goto(B + '/admin?q=SH2611-0008');
+  await p.click('a:has-text("SH2611-0008")');
+  await p.waitForSelector('h1:has-text("SH2611-0008")');
   // 두 번째 탭에서 먼저 변경 → 충돌
   const p2 = await ctx.newPage(); await p2.goto(p.url());
   await p.click('button:has-text("다음 단계로")');
@@ -58,7 +58,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const c2 = await b.newContext({ viewport: { width: 420, height: 860 }, deviceScaleFactor: 2 });
   const q = await c2.newPage();
   await q.goto(B + '/track');
-  await q.fill('#order_no', 'QS2611-0008'); await q.fill('#last4', '0000'); await q.click('button:has-text("배송 조회")');
+  await q.fill('#order_no', 'SH2611-0008'); await q.fill('#last4', '0000'); await q.click('button:has-text("배송 조회")');
   await q.waitForSelector('text=일치하는 주문이 없습니다');
   assert(true, '틀린 뒷자리는 조회 안 됨');
   await q.fill('#last4', '3352'); await q.click('button:has-text("배송 조회")');

@@ -42,7 +42,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await p.goto(B + '/admin/import');
   await p.setInputFiles('input[type=file]', require('path').join(__dirname, '../../public/sample-orders.csv'));
   await p.click('button:has-text("검사하기")');
-  await p.waitForSelector('text=검사 결과');
+  await p.waitForSelector('h2:has-text("검사 결과")');
   const errRows = await p.locator('tr.err').count();
   assert(errRows === 5, '문제 행 5개 표시: ' + errRows);
   await p.screenshot({ path: OUT + '04-import-preview.png', fullPage: true });
